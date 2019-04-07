@@ -6,8 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     [Header("Player")]
-    [SerializeField] float moveSpeed = 10f;
-    [SerializeField] float offset = 1f;
+    //SerializeField] float offset = 1f;
     [SerializeField] float health = 200f;
     [SerializeField] AudioClip deathSound;
     [SerializeField] AudioClip shootSound;
@@ -20,23 +19,39 @@ public class Player : MonoBehaviour {
 
     Coroutine firingCoroutine;
 
-    float xMin;
-    float xMax;
-    float yMin;
-    float yMax;
+    //float xMin;
+    //float xMax;
+    //float yMin;
+    //float yMax;
+    //float diffXPos;
+    //float diffYPos;
 
     // Use this for initialization
     void Start () {
-        SetUpMoveBoundaries();
-	}
+        //SetUpMoveBoundaries();
+    }
 
    
 
     // Update is called once per frame
     void Update () {
-        Move();
         Fire();
     }
+
+    /*void OnMouseDown()
+    {
+        var mousePosX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+        var mousePosY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+
+        diffXPos = transform.position.x - mousePosX;
+        diffYPos = transform.position.y - mousePosY;
+    }
+
+    void OnMouseDrag()
+    {
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector2(Mathf.Clamp(mousePos.x + diffXPos, xMin, xMax), Mathf.Clamp(mousePos.y + diffYPos, yMin, yMax));
+    }*/
 
     private void Fire()
     {
@@ -63,16 +78,6 @@ public class Player : MonoBehaviour {
             AudioSource.PlayClipAtPoint(shootSound, transform.position);
             yield return new WaitForSeconds(projectileFiringPeriod);
         }
-    }
-
-    private void Move()
-    {
-        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-        var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
-
-        var newXPos = Mathf.Clamp(transform.position.x + deltaX, xMin , xMax);
-        var newYPos = Mathf.Clamp(transform.position.y + deltaY, yMin , yMax);
-        transform.position = new Vector2(newXPos, newYPos);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -105,7 +110,7 @@ public class Player : MonoBehaviour {
         return Mathf.Max(health, 0f); //health;
     }
 
-    private void SetUpMoveBoundaries()
+    /*private void SetUpMoveBoundaries()
     {
         Camera gameCamera = Camera.main;
         xMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + offset;
@@ -113,5 +118,5 @@ public class Player : MonoBehaviour {
 
         yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + offset;
         yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - offset;
-    }
+    }*/
 }
