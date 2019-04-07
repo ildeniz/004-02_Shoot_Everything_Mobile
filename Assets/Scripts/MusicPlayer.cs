@@ -2,21 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicPlayer : MonoBehaviour {
+public class MusicPlayer : MonoBehaviour
+{
+    AudioSource audioSource;
+
+    // If you want to use a seperate "Splash screen" then use this approach
+    /*
+    // Start is called before the first frame update
+    void Start()
+    {
+        DontDestroyOnLoad(this);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = PlayerPrefsController.GetMasterVolume();
+    }
+    public void SetVolume(float volume)
+    {
+        audioSource.volume = volume;
+    }
+    */
+
+    // Singleton approach:
 
     private void Awake()
     {
         SetUpSingleton();
     }
 
+     void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = PlayerPrefsController.GetMasterVolume();
+    }
+    public void SetVolume(float volume)
+    {
+        audioSource.volume = volume;
+    }
+
     private void SetUpSingleton()
     {
-        //if (FindObjectsOfType<MusicPlayer>().Length > 1) -> we use <> to get a particular type, where we specify it.
-        //if (FindObjectsOfType<AudioSource>().Length > 1)
         if (FindObjectsOfType(GetType()).Length > 1)
-        /*  Why GetType()? GetType() is a bit more re-useable than <> 
-            b/c when we use this method of GetType it's getting the the type that 
-            "this"class is, which is "MusicPlayer" in this case. */
         {
             Destroy(gameObject);
         }

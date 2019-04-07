@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     [SerializeField] float health = 200f;
     [SerializeField] AudioClip deathSound;
     [SerializeField] AudioClip shootSound;
-    [SerializeField] [Range(0, 1)] float deathSoundVolume = 0.75f;
+    [SerializeField] float sfxVolume;
 
     [Header("Projectile Stats")]
     float shotCounter;
@@ -20,10 +20,12 @@ public class Player : MonoBehaviour {
 
     Coroutine firingCoroutine;
 
+
     // Use this for initialization
     void Start()
     {
         shotCounter = projectileFiringPeriod;
+        sfxVolume = PlayerPrefsController.GetSFXVolume();
     }
 
     // Update is called once per frame
@@ -48,7 +50,7 @@ public class Player : MonoBehaviour {
                 transform.position,
                 Quaternion.identity) as GameObject;
         laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed); //TODO prepare a seperate laser script
-        AudioSource.PlayClipAtPoint(shootSound, transform.position);
+        AudioSource.PlayClipAtPoint(shootSound, transform.position, sfxVolume);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,7 +75,7 @@ public class Player : MonoBehaviour {
     {
         FindObjectOfType<SceneLoader>().LoadGameOver();
         Destroy(gameObject);
-        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, sfxVolume);
     }
 
     public float GetHealth()

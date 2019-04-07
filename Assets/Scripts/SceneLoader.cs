@@ -19,6 +19,11 @@ public class SceneLoader : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    public void LoadOptionstMenu()
+    {
+        SceneManager.LoadScene("01b Options Menu");
+    }
+
     public void LoadGameOver()
     {
         StartCoroutine(WaitAndLoad());
