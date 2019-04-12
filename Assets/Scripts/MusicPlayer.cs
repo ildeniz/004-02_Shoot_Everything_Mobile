@@ -6,7 +6,7 @@ public class MusicPlayer : MonoBehaviour
 {
     AudioSource audioSource;
 
-    // If you want to use a seperate "Splash screen" then use this approach
+    // If you want to use a seperate "Splash/PreLoad screen" then use this approach
     /*
     // Start is called before the first frame update
     void Start()

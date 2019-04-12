@@ -5,12 +5,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-    [Header("Enemy Stats")] 
+    float sfxVolume;
+    float shotCounter;
+
+    // if there will be a seperte projectile script
+    /* 
+    float projectileSpeed;
+    */
+
+    [Header("Enemy Stats")]
     [SerializeField] float health = 100;
     [SerializeField] int scoreValue = 150;
+    [SerializeField] bool isBoss = false;
 
-    [Header("Enemy Projectile Stats")]
-    float shotCounter;
+    [Header("Projectile Stats")]
     [SerializeField] float minTimeBetweenShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 2f;
     [SerializeField] GameObject projectile;
@@ -21,7 +29,6 @@ public class Enemy : MonoBehaviour {
     [SerializeField] float durationOfExplosion = 1f;
     [SerializeField] AudioClip deathSound;
     [SerializeField] AudioClip shootSound;
-    [SerializeField] float sfxVolume;
 
     // Use this for initialization
     void Start () {
@@ -46,6 +53,11 @@ public class Enemy : MonoBehaviour {
 
     private void Fire()
     {
+        // if there will be a seperte projectile script
+        /* 
+        projectileSpeed = projectile.GetComponent<Projectile>().GetProjectileSpeed();
+        */
+
         GameObject laser = Instantiate(projectile,
                 transform.position,
                 Quaternion.identity) as GameObject;
@@ -58,15 +70,52 @@ public class Enemy : MonoBehaviour {
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
         if (!damageDealer) { return; }
         ProcessHit(damageDealer);
+
+        // if there will be a seperte projectile script
+        /*
+        Projectile projectile = other.gameObject.GetComponent<Projectile>();
+        if (!projectile) { return; }
+        ProcessHit(projectile);
+        */
     }
+
+    // if there will be a seperte projectile script
+    /*
+    private void ProcessHit(Projectile projectile)
+    {
+        health -= projectile.GetDamage();
+        projectile.Hit();
+
+        if (health <= 0 && !isBoss)
+        {
+            Die();
+            //FindObjectOfType<SceneLoader>().LoadGameOver();
+        }
+        else
+        {
+            Die();
+            FindObjectOfType<SceneLoader>().LoadGameOver();
+            //winLabel.SetActive(true); // put this in SceneLoader.cs
+            //Time.timeScale = 0f;
+        }
+    }
+    */
 
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
         damageDealer.Hit();
-        if (health <= 0)
+        if (health <= 0 && !isBoss)
         {
             Die();
+            //FindObjectOfType<SceneLoader>().LoadGameOver();
+        }
+        else if (health <= 0 && isBoss)
+        {
+            Die();
+            FindObjectOfType<SceneLoader>().LoadGameOver();
+            //winLabel.SetActive(true); // put this in SceneLoader.cs
+            //Time.timeScale = 0f;
         }
     }
 

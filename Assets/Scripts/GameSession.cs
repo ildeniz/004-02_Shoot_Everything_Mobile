@@ -7,6 +7,17 @@ public class GameSession : MonoBehaviour {
 
     int score = 0;
 
+    // If you want to use a seperate "Splash/PreLoad screen" then use this approach
+    /*
+    // Start is called before the first frame update
+    void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
+    */
+
+    // Singleton approach:
+
     private void Awake()
     {
         SetUpSingleton(); 

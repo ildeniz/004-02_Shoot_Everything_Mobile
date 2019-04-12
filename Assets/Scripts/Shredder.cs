@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Shredder : MonoBehaviour {
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(collision.gameObject);
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (enemy) { return; }
+        Destroy(other.gameObject);
     }
 }

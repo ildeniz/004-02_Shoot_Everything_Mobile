@@ -8,6 +8,7 @@ public class EnemyPathing : MonoBehaviour {
     WaveConfig waveConfig;
     List<Transform> waypoints;
     int waypointIndex = 0;
+    [SerializeField] bool isBossPath = false;
 
     // Use this for initialization
     void Start () {
@@ -40,8 +41,9 @@ public class EnemyPathing : MonoBehaviour {
                 waypointIndex++;
             }
         }
-        else
+        else if(!isBossPath)
         {
+            //if (!isBossPath) { Destroy(gameObject); }
             Destroy(gameObject);
         }
     }

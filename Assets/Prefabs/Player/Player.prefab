@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4661150456279170}
   - component: {fileID: 212575623550706626}
-  - component: {fileID: 114192130552392528}
   - component: {fileID: 60968876644166030}
-  - component: {fileID: 5634793419906865338}
+  - component: {fileID: 114192130552392528}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -82,29 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114192130552392528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846572773418756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 761890ecb8658bc489d6dd2f41832cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: 1
-  health: 500
-  deathSound: {fileID: 8300000, guid: fc3c2a7ae1b4cf2459d202fb53b7db52, type: 3}
-  shootSound: {fileID: 8300000, guid: 17b157f41fc82ea4e9a949281d409280, type: 3}
-  deathSoundVolume: 1
-  screenWidthInUnits: 10
-  screenHeightInUnits: 16
-  laserPrefab: {fileID: 1390247979368266, guid: 513586ee4566da0499f6a2acb5b12b6f,
-    type: 3}
-  projectileSpeed: 20
-  projectileFiringPeriod: 0.1
 --- !u!60 &60968876644166030
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -151,29 +127,21 @@ PolygonCollider2D:
       - {x: 0.15607017, y: -0.26618814}
       - {x: 0.32226202, y: -0.29845047}
       - {x: 0.37190413, y: -0.31071234}
---- !u!61 &5634793419906865338
-BoxCollider2D:
+--- !u!114 &114192130552392528
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846572773418756}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.12, y: 0.75}
-    newSize: {x: 1.12, y: 0.75}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 50, y: 50}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761890ecb8658bc489d6dd2f41832cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 500
+  deathSound: {fileID: 8300000, guid: fc3c2a7ae1b4cf2459d202fb53b7db52, type: 3}
+  shootSound: {fileID: 8300000, guid: 17b157f41fc82ea4e9a949281d409280, type: 3}
+  projectile: {fileID: 1390247979368266, guid: 513586ee4566da0499f6a2acb5b12b6f, type: 3}
+  projectileSpeed: 20
+  projectileFiringPeriod: 0.1
