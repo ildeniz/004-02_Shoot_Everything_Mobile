@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 500
+  waitForDOT: 5
   deathSound: {fileID: 8300000, guid: fc3c2a7ae1b4cf2459d202fb53b7db52, type: 3}
   shootSound: {fileID: 8300000, guid: 17b157f41fc82ea4e9a949281d409280, type: 3}
   projectile: {fileID: 1390247979368266, guid: 513586ee4566da0499f6a2acb5b12b6f, type: 3}

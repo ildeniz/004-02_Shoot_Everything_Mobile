@@ -46,6 +46,12 @@ public class GameSession : MonoBehaviour {
         score += scoreValue;
     }
 
+    public int SetScore()
+    {
+        score = 0;
+        return score;
+    }
+
     public void ResetGame()
     {
         Destroy(gameObject);

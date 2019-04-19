@@ -7,16 +7,31 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
 
     [SerializeField] float delayInSeconds = 2f;
+    private int currentSceneIndex;
 
-    public void LoadGameScene()
+
+    public void Start()
     {
-        SceneManager.LoadScene("02a Game");
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        
+        // For Splash/Preload Screen
+        /*if (currentSceneIndex == 0)
+        {
+            StartCoroutine(WaitAndLoad());
+        }*/
+    }
+
+    public void LoadGameScene(int levelIndex)
+    {
+        SceneManager.LoadScene("Level " + levelIndex);
+        //SceneManager.LoadScene("Level 1");
         FindObjectOfType<GameSession>().ResetGame();
     }
 
-    public void LoadStartMenu()
+    public void LoadMainMenu()
     {
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("01a Main Menu");
     }
 
     public void LoadOptionstMenu()
@@ -24,15 +39,35 @@ public class SceneLoader : MonoBehaviour {
         SceneManager.LoadScene("01b Options Menu");
     }
 
-    public void LoadGameOver()
+    public void LoadChooseLevelMenu()
     {
-        StartCoroutine(WaitAndLoad());
+        SceneManager.LoadScene("01c Choose Level");
+    }
+    
+
+    public void RetryLevel()
+    {
+        FindObjectOfType<GameSession>().ResetGame();
+        FindObjectOfType<LevelController>().SetGameCanvasTrue();
+        FindObjectOfType<GameSession>().SetScore();
+        SceneManager.LoadScene(currentSceneIndex);
+        Time.timeScale = 1f;
+    }
+
+    public void LevelComplete()
+    {
+        StartCoroutine(WaitAndLoadGameOver());
+    }
+
+    IEnumerator WaitAndLoadGameOver()
+    {
+        yield return new WaitForSeconds(delayInSeconds); //TODO wait till end of boss death animation
+        SceneManager.LoadScene("Level Complete");
     }
 
     private IEnumerator WaitAndLoad()
     {
         yield return new WaitForSeconds(delayInSeconds);
-        SceneManager.LoadScene("03 Game Over");
     }
 
     public void QuitGame()

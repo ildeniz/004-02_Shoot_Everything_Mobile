@@ -5,6 +5,7 @@ using UnityEngine;
 public class DragAndMove : MonoBehaviour
 {
     [SerializeField] float offset = 1f;
+    [SerializeField] float pushBackValue = 1;
 
     float xMin;
     float xMax;
@@ -33,6 +34,23 @@ public class DragAndMove : MonoBehaviour
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector2(Mathf.Clamp(mousePos.x + diffXPos, xMin, xMax), Mathf.Clamp(mousePos.y + diffYPos, yMin, yMax));
     }
+
+    /*
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if (other.GetComponent<BossBehaviour>())
+        {
+            PushBack();
+        }
+    }
+
+    private void PushBack()
+    {
+        var currentPosition = transform.position;
+        transform.position = new Vector2(currentPosition.x, currentPosition.y + pushBackValue);
+    }
+    */
 
     private void SetUpMoveBoundaries()
     {

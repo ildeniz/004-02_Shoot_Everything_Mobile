@@ -36,7 +36,7 @@ public class OptionsController : MonoBehaviour
     {
         PlayerPrefsController.SetMasterVolume(musicVolumeSlider.value);
         PlayerPrefsController.SetSFXVolume(sfxVolumeSlider.value);
-        FindObjectOfType<SceneLoader>().LoadStartMenu();
+        FindObjectOfType<SceneLoader>().LoadMainMenu();
     }
 
     public void SetDefaults()

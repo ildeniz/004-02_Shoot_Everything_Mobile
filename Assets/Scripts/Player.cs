@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
     [Header("Player")]
     //SerializeField] float offset = 1f;
     [SerializeField] float health = 200f;
+    [SerializeField] float waitForDOT = 2f;
     [SerializeField] AudioClip deathSound;
     [SerializeField] AudioClip shootSound;
 
@@ -23,8 +24,6 @@ public class Player : MonoBehaviour {
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed = 20f; //TODO prepare a seperate laser script
     [SerializeField] float projectileFiringPeriod = 0.1f; //TODO prepare a seperate laser script
-
-    Coroutine firingCoroutine;
 
     // Use this for initialization
     void Start()
@@ -51,7 +50,7 @@ public class Player : MonoBehaviour {
 
     private void Fire()
     {
-        // if there will be a seperte projectile script
+        // if there will be a seperate projectile script
         /* 
         projectileSpeed = projectile.GetComponent<Projectile>().GetProjectileSpeed();
         */
@@ -80,7 +79,18 @@ public class Player : MonoBehaviour {
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
-        damageDealer.Hit();
+
+        GameObject otherGameobject = damageDealer.gameObject;
+
+        if (!otherGameobject.GetComponent<BossBehaviour>())
+        {
+            damageDealer.Hit();
+        }
+        else if (otherGameobject.GetComponent<BossBehaviour>())
+        {
+            health = 0f;
+        }
+
         if (health <= 0)
         {
             Die();
@@ -102,7 +112,7 @@ public class Player : MonoBehaviour {
 
     private void Die()
     {
-        FindObjectOfType<SceneLoader>().LoadGameOver();
+        FindObjectOfType<LevelController>().PlayerDied();
         Destroy(gameObject);
         AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, sfxVolume);
     }
