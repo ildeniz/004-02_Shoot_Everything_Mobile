@@ -6,6 +6,7 @@ public class PlayerPrefsController : MonoBehaviour
 {
     const string MASTER_VOLUME_KEY = "master volume";
     const string SFX_VOLUME_KEY = "SFX volume";
+    const string LEVEL_REACHED_KEY = "levelReached";
 
     const float MIN_VOLUME = 0f;
     const float MAX_VOLUME = 1f;
@@ -46,4 +47,13 @@ public class PlayerPrefsController : MonoBehaviour
         return PlayerPrefs.GetFloat(SFX_VOLUME_KEY);
     }
 
+    public static void SetLevelReached(int reachedLevel)
+    {
+        PlayerPrefs.SetInt(LEVEL_REACHED_KEY, reachedLevel);
+    }
+
+    public static int GetLevelReached()
+    {
+        return PlayerPrefs.GetInt(LEVEL_REACHED_KEY);
+    }
 }

@@ -13,12 +13,13 @@ public class SceneLoader : MonoBehaviour {
     public void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        
-        // For Splash/Preload Screen
+
+        #region For Splash/Preload Screen
         /*if (currentSceneIndex == 0)
         {
             StartCoroutine(WaitAndLoad());
         }*/
+        #endregion
     }
 
     public void LoadGameScene(int levelIndex)

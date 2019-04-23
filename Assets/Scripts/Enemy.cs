@@ -52,10 +52,12 @@ public class Enemy : MonoBehaviour {
 
     private void Fire()
     {
-        // if there will be a seperate projectile script
+
+        #region if there will be a seperate projectile script
         /* 
         projectileSpeed = projectile.GetComponent<Projectile>().GetProjectileSpeed();
         */
+        #endregion
 
         GameObject laser = Instantiate(projectile,
                 transform.position,
@@ -70,12 +72,13 @@ public class Enemy : MonoBehaviour {
         if (!damageDealer) { return; }
         ProcessHit(damageDealer);
 
-        // if there will be a seperate projectile script
+        #region if there will be a seperate projectile script
         /*
         Projectile projectile = other.gameObject.GetComponent<Projectile>();
         if (!projectile) { return; }
         ProcessHit(projectile);
         */
+        #endregion
     }
 
     // if there will be a seperate projectile script

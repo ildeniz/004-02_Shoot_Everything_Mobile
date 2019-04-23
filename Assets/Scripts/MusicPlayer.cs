@@ -6,7 +6,7 @@ public class MusicPlayer : MonoBehaviour
 {
     AudioSource audioSource;
 
-    // If you want to use a seperate "Splash/PreLoad screen" then use this approach
+    #region If you want to use a seperate "Splash/PreLoad screen" then use this approach
     /*
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,7 @@ public class MusicPlayer : MonoBehaviour
         audioSource.volume = volume;
     }
     */
+    #endregion
 
     // Singleton approach:
 

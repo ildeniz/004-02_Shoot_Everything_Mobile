@@ -5,7 +5,6 @@ using UnityEngine;
 public class DragAndMove : MonoBehaviour
 {
     [SerializeField] float offset = 1f;
-    [SerializeField] float pushBackValue = 1;
 
     float xMin;
     float xMax;

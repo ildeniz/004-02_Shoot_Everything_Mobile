@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
 {
-    //[SerializeField] float delayInSeconds = 2f;
-    //[SerializeField] float waitForDOT = 2f;
 
     private void Awake()
     {

@@ -8,6 +8,8 @@ public class LevelController : MonoBehaviour
     [SerializeField] GameObject failLabel;
     [SerializeField] GameObject gameCanvas;
     [SerializeField] float delayInSeconds = 2f;
+    [SerializeField] int currentLevelIndex;
+
 
     Player player;
     int numberOfBosses = 0;
@@ -30,9 +32,10 @@ public class LevelController : MonoBehaviour
         numberOfBosses--;
         if (numberOfBosses <= 0 && player.GetHealth() > 0)
         {
-            Debug.Log("BOSS DOWN AND DEAD!");
+            Debug.Log("LEVEL " + currentLevelIndex + " BOSS DOWN AND DEAD!");
             SceneLoader sceneLoader = FindObjectOfType<SceneLoader>();
             sceneLoader.LevelComplete();
+            PlayerPrefsController.SetLevelReached(currentLevelIndex + 1);
 
             //winLabel.SetActive(true); //TODO some conguratulation message maybe?
 

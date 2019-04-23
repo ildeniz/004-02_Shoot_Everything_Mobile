@@ -7,11 +7,12 @@ public class Player : MonoBehaviour {
 
     float sfxVolume;
     float shotCounter;
-    
-    // if there will be a seperte projectile script
+
+    #region if there will be a seperate projectile script
     /* 
     float projectileSpeed;
     */
+    #endregion
 
     [Header("Player")]
     //SerializeField] float offset = 1f;
@@ -50,11 +51,11 @@ public class Player : MonoBehaviour {
 
     private void Fire()
     {
-        // if there will be a seperate projectile script
+#region if there will be a seperate projectile script
         /* 
         projectileSpeed = projectile.GetComponent<Projectile>().GetProjectileSpeed();
         */
-
+#endregion
         GameObject laser = Instantiate(projectile,
                 transform.position,
                 Quaternion.identity) as GameObject;
@@ -68,12 +69,13 @@ public class Player : MonoBehaviour {
         if (!damageDealer) { return; }
         ProcessHit(damageDealer);
 
-        // if there will be a seperte projectile script
+#region if there will be a seperte projectile script
         /* 
         Projectile projectile = other.gameObject.GetComponent<Projectile>();
         if (!projectile) { return; }
         ProcessHit(projectile);
         */
+#endregion
     }
 
     private void ProcessHit(DamageDealer damageDealer)
@@ -97,7 +99,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    //if there will be a seperte projectile script
+    #region if there will be a seperate projectile script
     /* 
     private void ProcessHit(Projectile projectile)
     {
@@ -109,6 +111,7 @@ public class Player : MonoBehaviour {
         }
     }
     */
+    #endregion
 
     private void Die()
     {
